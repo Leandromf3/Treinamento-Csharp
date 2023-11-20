@@ -1,0 +1,24 @@
+.home-name{
+    position: sticky;
+    color:rgb(41, 78, 73);
+    float: right;
+    font-size: 20px;
+    display: flex;
+    width: 92%;
+    justify-content: right;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.home-name span:hover{
+    cursor: pointer;
+    color:red;
+}
+.sider{
+    position: relative;
+}
+.Btn-logout{
+    bottom: -165px;
+    width: 100%;;
+    color:red;
+}
+

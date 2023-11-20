@@ -1,0 +1,12 @@
+.title-container{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+}
+.teste{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

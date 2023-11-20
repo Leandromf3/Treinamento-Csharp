@@ -1,0 +1,79 @@
+.div-for-Register{
+    position: relative; 
+    width:100vw;
+    height:100vh;
+    background: #001529e0; 
+    display: flex;
+    flex-Direction: row;
+    justify-Content: center;
+    align-Items: center;
+    margin: auto;
+}
+.form-Register-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+    height: 530px;
+    border: 1px solid rgba(255, 255, 255, 0.281);
+    background: linear-gradient(-45deg,#b19b9b54,#34465f);
+    border-radius: 5%;
+}
+.regisUser, .regisPass, .regisRePass, .regisRole, .regisEmail, .regisName{
+    width: 290px;
+}
+.btn-regis-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+}
+.btn-regis-cont button{
+    width: 98%;
+    border-radius: 0;
+}
+.title-container-register{
+    font-family: 'roboto',sans-serif;
+    position: relative;
+    bottom: 5%;
+    font-size: 30px;
+    color:white;
+}
+.div-alert{
+    position: absolute;
+    top: 3%;
+}
+.User-Regis-Input, #Usuario, .Password-Regis-Input, #Senha, #Repass, .RePass-regis-Input, .Email-regis-Input, #Email, .Name-regis-Input, #Name{
+    background:transparent;
+    border: none;
+    color: white;
+}
+.User-Regis-Input, .Password-Regis-Input, .RePass-regis-Input, .Email-regis-Input, .Name-regis-Input{
+    color: white;
+    border-radius: 0;
+    border-bottom: 1px solid white;
+}
+#Usuario::placeholder, #Senha::placeholder, #Repass::placeholder, #Email::placeholder, #Name::placeholder{
+    color: white;
+}
+
+.regisRole .ant-select-selector{
+    color: white;
+    background-color: transparent !important;
+    border: 1px solid red;
+}
+
+.ant-select-dropdown{
+    background: #34465f;
+}
+.ant-select-item-option-content{
+    color:white;
+}
+.regisRole .ant-select-arrow{
+    color:white;
+}

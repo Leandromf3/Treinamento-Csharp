@@ -1,0 +1,62 @@
+.div-for{
+    position: relative; 
+    width:100vw;
+    height:100vh;
+    background: #001529e0; 
+    display: flex;
+    flex-Direction: row;
+    justify-Content: center;
+    align-Items: center;
+    margin: auto;
+}
+.form-Login-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.281);
+    background: linear-gradient(-45deg,#b19b9b54,#34465f);
+    border-radius: 5%;
+}
+.User, .Password{
+    width: 290px;
+    background: transparent ;
+}
+
+.btn-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+}
+.btn-cont button{
+    width: 98%;
+    border-radius: 0;
+}
+.title-container{
+    font-family: 'roboto',sans-serif;
+    position: relative;
+    bottom: 10%;
+    font-size: 30px;
+    color: white;
+}
+.User-Input, #User, .Password-Input, #Password{
+    background:transparent;
+    border: none;
+    color: white;
+}
+.User-Input, .Password-Input{
+    color: white;
+    border-radius: 0;
+    border-bottom: 1px solid white;
+}
+#User::placeholder, #Password::placeholder{
+    color: white;
+}
+

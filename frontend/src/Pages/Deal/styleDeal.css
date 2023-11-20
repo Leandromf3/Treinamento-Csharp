@@ -1,0 +1,8 @@
+.title-Content{
+    display: flex;
+    font-size: 24px;
+    font-family: 'roboto',sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: black
+}
