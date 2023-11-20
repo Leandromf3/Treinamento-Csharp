@@ -45,7 +45,6 @@ namespace Treinamento_C_.Repository
             try
             {
                 string query = $"SELECT * FROM dbo.usuarios WHERE ST_LOGIN='{userEntity.ST_LOGIN}'";
-                List<UserEntity> user = new List<UserEntity>();
                 DataTable resultUser = ExecQueryTeste(query);           
 
                 if (resultUser.Rows.Count <= 0)

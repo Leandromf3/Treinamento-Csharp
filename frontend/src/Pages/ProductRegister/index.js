@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { LockOutlined, TagsOutlined , BarcodeOutlined, MedicineBoxOutlined, FieldBinaryOutlined } from '@ant-design/icons';
 import './styleRegisterProduct.css';
 
-const ApiHost ='http://localhost:8000/api/bitrix';
+const ApiHost ='https://localhost:7178/Product';
 
 
 export default function Body(){
@@ -19,38 +19,38 @@ export default function Body(){
 
 
     const data = {
-        name:nameInput,
-        price:priceInput,
-        codigo:codInput,
-        quantidade:quantidadeInput,
+        productName:nameInput,
+        productPrice:priceInput,
+        productCode:codInput,
+        productQuant:quantidadeInput,
     };
     
     const regProduct = async (data)=>{
-        console.log(data);
-        const response = await fetch(ApiHost+'/productCreate',{
+        const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
+        const response = await fetch(ApiHost+'/createProduct',{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('TOKEN_TEST')
+                'Authorization': 'Bearer '+ tolkienn.value
             },
             body: JSON.stringify(data)
         })
         const resp = await response.json();
-
-        if(resp.error != undefined){
-          setError(resp.error.message);
-          setTimeout(() => {
-            setError('');
-            form.resetFields();
-          }, 2000);    
-        }else{
-         setSuccess('Cadastro feito com sucesso!');
-         setTimeout(() => {
-          setSuccess('');
-          navigate('/home/prodRegister');
-         }, 2000);
-          
-        }
+        console.log(resp);
+        if(typeof resp.value == 'undefined'){
+            setError('Cadastro inválido!');
+            setTimeout(() => {
+              setError('');
+              form.resetFields();
+            }, 2000);
+            navigate('/home/prodRegister');
+           
+          }else{
+           setSuccess('Cadastrado com sucesso!');
+           setTimeout(() => {
+            navigate(`/home`, { state: { token: resp } } );
+           }, 2000);
+          }
     }
     
     const handleNameInputChange = (e) => {

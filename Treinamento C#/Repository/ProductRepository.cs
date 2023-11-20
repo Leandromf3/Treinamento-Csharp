@@ -10,7 +10,18 @@ namespace Treinamento_C_.Repository
         {
             try
             {
-                string query = $"INSERT INTO "
+                string query1 = $"SELECT * FROM dbo.products WHERE productCode = {produto.productCode}";
+                DataTable dt1 = ExecQueryTeste(query1);
+
+                if(dt1.Rows.Count > 0)
+                {
+                    throw new Exception();
+                }
+
+                string query = $"INSERT INTO dbo.products (productName, productCode, productQuant, productPrice) " +
+                    $"VALUES('{produto.productName}', '{produto.productCode}', '{produto.productQuant}', '{produto.productPrice}')";
+                DataTable dt = ExecQueryTeste(query);
+                return dt.ToString();
             }
             catch (Exception)
             {

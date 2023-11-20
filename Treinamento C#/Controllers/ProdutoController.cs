@@ -1,14 +1,18 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Treinamento_C_.Entities;
+using Treinamento_C_.Middleware;
 using Treinamento_C_.Repository;
 
 namespace Treinamento_C_.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProdutoController : ControllerBase
-    {
+    public class ProductController : ControllerBase
+    { 
 
+
+        [Authorize]
         [HttpPost]
         [Route("createProduct")]
         public ActionResult Create([FromBody] Product produto)
