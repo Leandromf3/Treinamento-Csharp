@@ -35,9 +35,8 @@ export default function Body(){
             },
             body: JSON.stringify(data)
         })
-        const resp = await response.json();
-        console.log(resp);
-        if(typeof resp.value == 'undefined'){
+        const resp = await response;
+        if(resp.ok == false){
             setError('Cadastro inválido!');
             setTimeout(() => {
               setError('');
