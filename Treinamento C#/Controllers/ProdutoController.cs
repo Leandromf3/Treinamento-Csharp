@@ -35,7 +35,7 @@ namespace Treinamento_C_.Controllers
             try
             {
                 //getALL
-                var result = new MainRepository().Get();
+                var result = new ProductRepository().Get();
                 return result != null ? Ok(result) : StatusCode(250, "Nenhum resultado encontrado");
             }
             catch (Exception ex)
