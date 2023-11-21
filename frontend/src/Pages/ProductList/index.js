@@ -41,9 +41,10 @@ const App = ({}) => {
             fetchData();
         }, []);
         const fetchData = async () => {
+            const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
             try {
-                const response = await axios.get('http://localhost:8000/api/bitrix/companyList',{
-                    headers: {Authorization: localStorage.getItem('TOKEN_TEST')}}
+                const response = await axios.get('https://localhost:7178/Product/getProduct',{
+                    headers: {Authorization:'Bearer '+ tolkienn.value}}
                 );
                 setData(response.data);
             } catch (error) {
@@ -57,7 +58,7 @@ const App = ({}) => {
     const handleClickUpdate = (id) => {
         getID(id);
     }
-
+console.log(data)
     return (
         <> 
         
@@ -81,8 +82,8 @@ const App = ({}) => {
             <List.Item>
                 
             <List.Item.Meta
-            title={<a href={url+item.ID+'/'}>{item.TITLE}</a>}
-            description={'CNPJ: '+item.UF_CRM_1698435704849}
+            title={<a href={url+item.productCode+'/'}>{item.productName}</a>}
+            description={'Preço: R$ '+item.productPrice }
             />
                 <Button type='primary' onClick={()=>handleClickUpdate(item.ID)}>Update</Button>
                 <Button type='primary' danger onClick={()=>handleClickDelete(item.ID)}>Delete</Button>
