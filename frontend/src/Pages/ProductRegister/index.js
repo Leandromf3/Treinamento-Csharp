@@ -47,8 +47,10 @@ export default function Body(){
           }else{
            setSuccess('Cadastrado com sucesso!');
            setTimeout(() => {
-            navigate(`/home`, { state: { token: resp } } );
-           }, 2000);
+            setSuccess('');
+            form.resetFields();
+           }, 2000);            
+           navigate(`/home/prodRegister`);
           }
     }
     
