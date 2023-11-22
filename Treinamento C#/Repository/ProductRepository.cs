@@ -63,6 +63,10 @@ namespace Treinamento_C_.Repository
         {
             try
             {
+        public List<Product> Get()
+        {
+            try
+            {
                 string query = $"SELECT * FROM dbo.products";
                 List<Product> tudo = new List<Product>();
                 DataTable result = ExecQueryTeste(query);

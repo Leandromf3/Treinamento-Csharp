@@ -29,7 +29,7 @@ export default function Body(){
             body: JSON.stringify(data)
         })
         const resp = await response.json();
-console.log(resp)
+        console.log(resp);
         const dateTime = new Date();
         
         dateTime.setMinutes(dateTime.getMinutes()+30);

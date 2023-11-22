@@ -129,38 +129,33 @@ function getItem(label, key, icon, children){
     icon: <UnorderedListOutlined/>,
     label: 'Exibir Leads',
     path: '/home/leadList',
-  },{
+  },
+  {
     key: '5',
-    icon: <PlusSquareOutlined />,
-    label: 'Adicionar empresas',
-    path: '/home/companyCreate',
+    icon: <UnorderedListOutlined/>,
+    label: 'Exibir produtos',
+    path: '/home/productList'
   },
   {
     key: '6',
-    icon: <UnorderedListOutlined/>,
-    label: 'Exibir empresas',
-    path: '/home/companyList'
-  },
-  {
-    key: '7',
     icon:<ToTopOutlined />,
     label: 'Vincular arquivo',
     path: '/home/upload'
   },
   {
-    key: '8',
+    key: '7',
     icon:<UserAddOutlined />,
     label: 'Adicionar contato',
     path: '/home/contactCreate'
   },
   {
-    key: '9',
+    key: '8',
     icon:<UserAddOutlined/>,
     label: 'Usuarios',
     path: '/home/Users'
   },
   {
-    key: '10',
+    key: '9',
     icon:<CloseOutlined/>,
     label: 'Cadastrar produtos',
     path: '/home/prodRegister'

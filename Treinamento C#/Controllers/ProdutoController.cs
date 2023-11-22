@@ -27,14 +27,15 @@ namespace Treinamento_C_.Controllers
                 return BadRequest(new { message = "Erro: " + ex.Message });
             }
         }
-
+        [Authorize]
         [HttpGet]
+        [Route("getProduct")]
         public ActionResult Get()
         {
             try
             {
                 //getALL
-                var result = new MainRepository().Get();
+                var result = new ProductRepository().Get();
                 return result != null ? Ok(result) : StatusCode(250, "Nenhum resultado encontrado");
             }
             catch (Exception ex)
@@ -46,20 +47,3 @@ namespace Treinamento_C_.Controllers
 
     }
 }
-/*[HttpGet]
-public ActionResult GetItem(int id)
-{
-    try
-    {
-        //getALL
-        List<Item> result = new ProductRepository().GetProduto();
-        return result != null ? Ok(result) : StatusCode(250, "Nenhum resultado encontrado");
-    }
-    catch (Exception ex)
-    {
-        return StatusCode(500, $"ocorreu o erro: {ex}");
-    }
-
-
-}
-}  }*/
