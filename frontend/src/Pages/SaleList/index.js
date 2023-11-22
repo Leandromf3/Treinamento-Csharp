@@ -57,7 +57,7 @@ const App = ({}) => {
         renderItem={(item) => (
             <List.Item>
             <List.Item.Meta
-            title={<a href={url+item.ID+'/'}>{item.vendedor}</a>}
+            title={<a >{item.vendedor}</a>}
             description={handleDate(item)}
             />
 
