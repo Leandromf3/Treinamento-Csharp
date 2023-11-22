@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Home from './Pages/Home';
 import Sale from './Pages/Sale';
 import SaleList from './Pages/SaleList';
-import DealUpdate from './Pages/SaleExtract';
+import SaleExtract from './Pages/SaleExtract';
 import Lead from './Pages/Lead';
 import LeadList from './Pages/LeadList';
 import LeadUpdate from './Pages/LeadUpdate';
@@ -25,7 +25,7 @@ export default ()=>{
                 <Route exact path = '/home' element = {<Home/>} >
                     <Route exact path = '/home/saleCreate' element = {<Sale/>}/>
                     <Route exact path = '/home/saleList' element = {<SaleList/>}/>
-                    <Route exact path = '/home/Lead' element = {<Lead/>}/>
+                    <Route exact path = '/home/saleExtract' element = {<SaleExtract/>}/>
                     <Route exact path = '/home/leadCreate' element = {<Lead/>}/>
                     <Route exact path = '/home/dealUpdate/:id' element = {<DealUpdate/>}/>
                     <Route exact path = '/home/leadList' element = {<LeadList/>}/>
