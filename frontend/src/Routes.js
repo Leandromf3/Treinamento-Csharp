@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Home from './Pages/Home';
 import Sale from './Pages/Sale';
 import SaleList from './Pages/SaleList';
-import DealUpdate from './Pages/DealUpdate';
+import DealUpdate from './Pages/SaleExtract';
 import Lead from './Pages/Lead';
 import LeadList from './Pages/LeadList';
 import LeadUpdate from './Pages/LeadUpdate';

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
+const apihost = 'https://localhost:7178/Sale';
 
 const positionOptions = ['top', 'bottom', 'both'];
 const alignOptions = ['start', 'center', 'end'];
@@ -13,7 +14,7 @@ const App = ({}) => {
     const [position, setPosition] = useState('bottom');
     const [align, setAlign] = useState('center');  
     const [data, setData] = useState([]);
-
+    const tolkien = JSON.parse(localStorage.getItem('TOKEN_TEST'));
 
     const getID = async (id)=>{
     try{
@@ -26,7 +27,7 @@ const App = ({}) => {
     const deleteDeal = async(id)=>{
         try{
             await axios.delete(`http://localhost:8000/api/bitrix/dealDelete?id=${id}`,{
-                headers:{Authorization: localStorage.getItem('TOKEN_TEST')}
+                headers:{Authorization: 'Bearer '+ tolkien.value}
             });
             fetchData();
         }catch(error){
@@ -39,8 +40,8 @@ const App = ({}) => {
         }, []);
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/bitrix/dealList',{
-                    headers:{Authorization: localStorage.getItem('TOKEN_TEST')}
+                const response = await axios.get(apihost + '/getSale',{
+                    headers:{Authorization: 'Bearer '+ tolkien.value}
                 });
                 setData(response.data);
             } catch (error) {
@@ -54,7 +55,12 @@ const App = ({}) => {
     const handleClickDelete = (id) => {
         deleteDeal(id);
     }
-
+    
+    const handleDate = (e) => {
+        let datavenda = new Date(e.dataVenda);
+        let dataFormatada = datavenda.toLocaleDateString('pt-BR');
+        return dataFormatada;    
+    }
     return (
         <>
         <Space
@@ -76,11 +82,10 @@ const App = ({}) => {
         renderItem={(item) => (
             <List.Item>
             <List.Item.Meta
-            title={<a href={url+item.ID+'/'}>{item.TITLE}</a>}
-            description={item.UF_CRM_1698435318631}
+            title={<a href={url+item.ID+'/'}>{item.vendedor}</a>}
+            description={handleDate(item)}
             />
-                <Button type='primary' onClick={()=>handleClickGetId(item.ID)}>Update</Button>
-                <Button type='primary' danger onClick={()=>handleClickDelete(item.ID)} >Delete</Button>
+
             </List.Item>
             )}
             />

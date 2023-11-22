@@ -2,11 +2,46 @@
 using Newtonsoft.Json;
 using System.Data;
 using Treinamento_C_.Entities;
+using System.Globalization;
+
 
 namespace Treinamento_C_.Repository
 {
     public class saleRepository : BaseRepository
     {
+        public List<SaleView> getAll()
+        {
+            try
+            {
+                string query = "SELECT * FROM dbo.vendas";
+                List<SaleView> tudo = new List<SaleView>();
+                DataTable dt = ExecQueryTeste(query);
+
+                foreach (DataRow row in dt.Rows) 
+                {
+                    var aux = new SaleView()
+                    {
+                        vendedor = Convert.ToString(row["ST_NAME"]),
+                        cod = Convert.ToInt32(row["codigo"]),
+                        Rua = Convert.ToString(row["Rua"]),
+                        Estado = Convert.ToString(row["Estado"]),
+                        Cidade = Convert.ToString(row["Cidade"]),
+                        dataVenda = Convert.ToDateTime(row["dataVenda"]),
+                        obs = Convert.ToString(row["obs"]),
+                        price = float.Parse(row["valor"].ToString(), CultureInfo.InvariantCulture)
+                    };
+                    tudo.Add(aux);
+                }
+                return tudo;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
 
         public async Task<string> createSale(SaleEntity entity)
         {

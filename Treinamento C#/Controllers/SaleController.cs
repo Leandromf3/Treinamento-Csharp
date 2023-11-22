@@ -24,5 +24,21 @@ namespace Treinamento_C_.Controllers
                 return BadRequest(new { message = "Erro: " + ex.Message });
             }
         }
+        [Authorize]
+        [HttpGet]
+        [Route("getSale")]
+        public ActionResult getAll()
+        {
+            try
+            {
+                var result = new saleRepository().getAll();
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
