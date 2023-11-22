@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Home from './Pages/Home';
-import Deal from './Pages/Deal';
-import DealList from './Pages/DealList';
+import Sale from './Pages/Sale';
+import SaleList from './Pages/SaleList';
 import DealUpdate from './Pages/DealUpdate';
 import Lead from './Pages/Lead';
 import LeadList from './Pages/LeadList';
@@ -23,9 +23,9 @@ export default ()=>{
             <Routes>
                 <Route exact path = '/' element={<Login/>}></Route> 
                 <Route exact path = '/home' element = {<Home/>} >
-                    <Route exact path = '/home/dealCreate' element = {<Deal/>}/>
-                    <Route exact path = '/home/dealList' element = {<DealList/>}/>
-                    <Route exact path = '/home/Lead' element = {<Deal/>}/>
+                    <Route exact path = '/home/saleCreate' element = {<Sale/>}/>
+                    <Route exact path = '/home/saleList' element = {<SaleList/>}/>
+                    <Route exact path = '/home/Lead' element = {<Lead/>}/>
                     <Route exact path = '/home/leadCreate' element = {<Lead/>}/>
                     <Route exact path = '/home/dealUpdate/:id' element = {<DealUpdate/>}/>
                     <Route exact path = '/home/leadList' element = {<LeadList/>}/>

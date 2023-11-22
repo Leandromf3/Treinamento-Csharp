@@ -108,8 +108,8 @@ function getItem(label, key, icon, children){
     {
       key: '1',
       icon: <PlusCircleOutlined />,
-      label: 'Criar um novo Deal',
-      path: '/home/dealCreate',
+      label: 'Criar uma venda',
+      path: '/home/saleCreate',
       
     },
     {

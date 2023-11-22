@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Treinamento_C_.Entities;
+using System.Globalization;
 
 namespace Treinamento_C_.Repository
 {
@@ -30,6 +31,38 @@ namespace Treinamento_C_.Repository
             }
         }
 
+        public float getByCode(string code)
+        {
+            try
+            {
+                string query = $"SELECT * FROM dbo.products WHERE productCode='{code}'";
+                DataTable result = ExecQueryTeste(query);
+
+                if (result.Rows.Count == 0)
+                {
+                    return 0;
+                }
+
+                float price = 0;
+
+                foreach (DataRow row in result.Rows)
+                {
+                    price = float.Parse(row["productPrice"].ToString(), CultureInfo.InvariantCulture);
+                }
+
+                return price;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Product> Get()
+        {
+            try
+            {
         public List<Product> Get()
         {
             try
