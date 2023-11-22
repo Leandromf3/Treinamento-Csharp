@@ -60,11 +60,7 @@ namespace Treinamento_C_.Repository
         }
 
         public List<Product> Get()
-        {
-            try
-            {
-        public List<Product> Get()
-        {
+        {      
             try
             {
                 string query = $"SELECT * FROM dbo.products";
