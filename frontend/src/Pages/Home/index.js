@@ -115,8 +115,8 @@ function getItem(label, key, icon, children){
     {
       key: '2',
       icon: <UnorderedListOutlined/>,
-      label: 'Exibir Deals',
-      path: '/home/dealList',
+      label: 'Extrato vendas',
+      path: '/home/saleList',
     },
     {
       key: '3',
