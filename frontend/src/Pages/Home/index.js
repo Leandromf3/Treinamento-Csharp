@@ -118,44 +118,26 @@ function getItem(label, key, icon, children){
       label: 'Extrato vendas',
       path: '/home/saleList',
     },
-    {
-      key: '3',
-      icon: <PlusCircleOutlined />,
-      label: 'Criar um novo Lead',
-      path: '/home/leadCreate',
-    },
-    {
-    key: '4',
-    icon: <UnorderedListOutlined/>,
-    label: 'Exibir Leads',
-    path: '/home/leadList',
-  },
   {
-    key: '5',
+    key: '3',
     icon: <UnorderedListOutlined/>,
     label: 'Exibir produtos',
     path: '/home/productList'
   },
   {
-    key: '6',
+    key: '4',
     icon:<ToTopOutlined />,
     label: 'Vincular arquivo',
     path: '/home/upload'
   },
   {
-    key: '7',
-    icon:<UserAddOutlined />,
-    label: 'Adicionar contato',
-    path: '/home/contactCreate'
-  },
-  {
-    key: '8',
+    key: '5',
     icon:<UserAddOutlined/>,
     label: 'Usuarios',
     path: '/home/Users'
   },
   {
-    key: '9',
+    key: '6',
     icon:<CloseOutlined/>,
     label: 'Cadastrar produtos',
     path: '/home/prodRegister'
