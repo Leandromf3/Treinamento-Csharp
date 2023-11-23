@@ -1,4 +1,4 @@
-import { Avatar, Button, List, Popconfirm, Radio, Space } from 'antd';
+import { Avatar, Button, List, Modal, Popconfirm, Radio, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
@@ -11,9 +11,29 @@ const App = ({}) => {
     const navigate = useNavigate();
     const [position, setPosition] = useState('bottom');
     const [align, setAlign] = useState('center');  
+    const [selectedItem, setSelectedItem] = useState([]);
     const [data, setData] = useState([]);
     const tolkien = JSON.parse(localStorage.getItem('TOKEN_TEST'));
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+        const showModal = (item) => {
+            setSelectedItem(item);
+            setIsModalOpen(true);
+        };
+        const handleOk = () => {
+            setIsModalOpen(false);
+        };
+        const handleCancel = () => {
+            setIsModalOpen(false);
+        };
+        const handleObs = (e)=>{
+            if(e.obs ==''){
+                return 'Não há observações'
+            }
+            else{
+                return e.obs;
+            }
+        }
 
     
         useEffect(() => {
@@ -57,10 +77,20 @@ const App = ({}) => {
         renderItem={(item) => (
             <List.Item>
             <List.Item.Meta
-            title={<a >{item.vendedor}</a>}
-            description={handleDate(item)}
+            title={<a onClick={()=>showModal(item)} >{item.vendedor}</a>}
+            description={'Data do pagamento: '+handleDate(item) }
             />
-
+            <Modal title={"Extrato venda: "+selectedItem.cod} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <p>Nome do vendedor: {selectedItem.vendedor}</p>
+                <p>Código da venda: {selectedItem.cod} </p>
+                <p>Data da venda: {handleDate(selectedItem)}</p>
+                <strong>Endereço</strong>
+                <p>Estado: {selectedItem.estado}</p>
+                <p>Cidade: {selectedItem.cidade}</p>
+                <p>Rua: {selectedItem.rua}</p>
+                <p>Observação: {handleObs(selectedItem)}</p>
+                <strong>Valor: R$ {selectedItem.price}</strong>
+            </Modal>
             </List.Item>
             )}
             />

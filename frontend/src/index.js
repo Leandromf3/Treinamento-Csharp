@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App/App';
 
 
-const Root = () => {
-
+const Root = () => {  
   return (
     <>
       <App />
