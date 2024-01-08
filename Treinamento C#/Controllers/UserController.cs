@@ -53,6 +53,22 @@ namespace Treinamento_C_.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        [Route("update")]
+        public ActionResult updateUsers([FromBody] UserEntity entity)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [Authorize]
         [HttpGet]
         [Route("getUsers")]
         public ActionResult getUsers()

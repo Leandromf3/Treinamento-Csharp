@@ -76,6 +76,7 @@ namespace Treinamento_C_.Repository
                 {
                     var item = new Product
                     {
+                        id = Convert.ToInt32(row["id"]),
                         productName = Convert.ToString(row["productName"]),
                         productCode = Convert.ToString(row["productCode"]),
                         productPrice = Convert.ToDouble(row["productPrice"]),
