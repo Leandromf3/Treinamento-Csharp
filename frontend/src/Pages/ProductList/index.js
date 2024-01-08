@@ -9,19 +9,19 @@ import { saveAs } from 'file-saver';
 const positionOptions = ['top', 'bottom', 'both'];
 const alignOptions = ['start', 'center', 'end'];
 
-const url ='https://b24-q0ahqa.bitrix24.com.br/crm/leads/details/';
 const App = ({}) => {
     const navigate = useNavigate();
     const [position, setPosition] = useState('bottom');
     const [align, setAlign] = useState('center');  
     const [data, setData] = useState([]);
+    const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
 
    
 
     const deleteCompany = async (id) => {
         try{
             await axios.delete(`http://localhost:8000/api/bitrix/companyDelete?id=${id}`,{
-            headers: {Authorization: localStorage.getItem('TOKEN_TEST')}}
+            headers: {Authorization: 'Bearer '+ tolkienn.value}}
             );
             fetchData();
         }catch(error){
@@ -31,7 +31,7 @@ const App = ({}) => {
 
     const getID = async (id)=>{
         try{
-            navigate(`/home/companyUpdate/${id}`);
+            navigate(`/home/productUpdate/${id}`);
         }catch(error){
             console.error('ERROR!', error);
         }
@@ -41,7 +41,6 @@ const App = ({}) => {
             fetchData();
         }, []);
         const fetchData = async () => {
-            const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
             try {
                 const response = await axios.get('https://localhost:7178/Product/getProduct',{
                     headers: {Authorization:'Bearer '+ tolkienn.value}}
@@ -82,11 +81,11 @@ console.log(data)
             <List.Item>
                 
             <List.Item.Meta
-            title={<a href={url+item.productCode+'/'}>{item.productName}</a>}
+            title={<a href={item.productCode+'/'}>{item.productName}</a>}
             description={'Preço: R$ '+item.productPrice }
             />
-                <Button type='primary' onClick={()=>handleClickUpdate(item.ID)}>Update</Button>
-                <Button type='primary' danger onClick={()=>handleClickDelete(item.ID)}>Delete</Button>
+                <Button type='primary' onClick={()=>handleClickUpdate(item.id)}>Update</Button>
+                <Button type='primary' danger onClick={()=>handleClickDelete(item.id)}>Delete</Button>
             </List.Item>
             )}
             />

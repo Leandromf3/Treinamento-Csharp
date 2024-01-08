@@ -25,7 +25,7 @@ namespace Treinamento_C_.Repository
 
                 if (resultUser.Rows.Count > 0)
                 {
-                    throw new BadHttpRequestException("Usuario não existe");
+                    throw new BadHttpRequestException("Usuario já existe");
                 }
                 string query2 = $"INSERT INTO dbo.usuarios (ST_NAME, ST_EMAIL, ST_ROLE, ST_LOGIN, ST_PASSWORD) VALUES ('{entity.ST_NAME}', '{entity.ST_EMAIL}', '{entity.ST_ROLE}', '{entity.ST_LOGIN}', '{passwordCrypt}') ";
                 List<UserEntity> register = new List<UserEntity>();
@@ -47,7 +47,7 @@ namespace Treinamento_C_.Repository
                 string query = $"SELECT * FROM dbo.usuarios WHERE ST_LOGIN='{userEntity.ST_LOGIN}'";
                 DataTable resultUser = ExecQueryTeste(query);           
 
-                if (resultUser.Rows.Count <= 0)
+                if (resultUser.Rows.Count < 0)
                 {
                     throw new Exception();
                 }

@@ -3,16 +3,19 @@ import { InboxOutlined } from '@ant-design/icons';
 import { message, Select, Upload } from 'antd';
 const { Dragger } = Upload
 
-
+const ApiHost = 'https://localhost:7178/Sale';
+const ApiHost2 = 'https://localhost:7178/User';
 
 function App(){
 const [optionsLead, setLeadOptions] = useState([]);
 const [selectedLead, setSelectedLead] = useState(null);
 
+const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
+
 const props = {
   name: 'file',
   multiple: false,
-  action: `http://localhost:8000/api/bitrix/upload?content=${selectedLead}`,
+  action: `${ApiHost}/upload?content=${selectedLead}`,
   headers:{'Authorization': localStorage.getItem('TOKEN_TEST')},
   onChange(info) {
     const { status } = info.file;
@@ -40,10 +43,11 @@ const props = {
 useEffect(() => {
   const fetchLead = async () => {
     try {
-      const resLead = await fetch('http://localhost:8000/api/bitrix' + '/leadList',{
-        headers: {Authorization: localStorage.getItem('TOKEN_TEST')}});
+      const resLead = await fetch(ApiHost2 + '/getUsers',{
+        headers: {Authorization: 'Bearer '+ tolkienn.value}});
       const data = await resLead.json();
-      const optionsLead = data.map(lead => ({ value: lead.ID, label: lead.TITLE }));
+      const optionsLead = data.map(users => ({ value: users.sT_EMAIL, label: users.sT_LOGIN }));
+      console.log(data)
       setLeadOptions(optionsLead);
     } catch (error) {
       console.error('Erro ao obter as empresas:', error);
@@ -57,7 +61,7 @@ useEffect(() => {
 return(
 <>
 <Select
-      defaultValue="Selecione o lead para vincular o arquivo"
+      defaultValue="Selecione a venda para vincular o arquivo"
       style={{ width: 300 }}
       onChange={(value) => setSelectedLead(value)}
       options = {optionsLead}
