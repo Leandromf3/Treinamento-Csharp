@@ -84,5 +84,38 @@ namespace Treinamento_C_.Controllers
                 throw;
             }
         }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteUser")]
+        public ActionResult softDeleteUser(int id)
+        {
+            try
+            {
+                var result = new MainRepository().softDeleteUser(id);
+                return result != null ? Ok(result) : StatusCode(250, "Erro");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("reactiveUser")]
+        public ActionResult Reactive(int id)
+        {
+            try
+            {
+                var result = new MainRepository().reactiveUser(id);
+                return result != null ? Ok(result) : StatusCode(250, "ERRO");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

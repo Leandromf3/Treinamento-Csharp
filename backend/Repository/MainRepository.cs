@@ -88,15 +88,32 @@ namespace Treinamento_C_.Repository
                 {
                     var users = new UserEntity()
                     {
+                        Id = (int)row["CD_USUARIO"],
                         ST_NAME = Convert.ToString(row["ST_NAME"]),
                         ST_PASSWORD = Convert.ToString(row["ST_PASSWORD"]),
                         ST_EMAIL = Convert.ToString(row["ST_EMAIL"]),
                         ST_ROLE = Convert.ToString(row["ST_ROLE"]),
-                        ST_LOGIN = Convert.ToString(row["ST_LOGIN"])
+                        ST_LOGIN = Convert.ToString(row["ST_LOGIN"]),
+                        ST_STATUS = row["ST_STATUS"] != DBNull.Value ? Convert.ToBoolean(row["ST_STATUS"]) : true
                     };
                     user.Add(users);
                 }
                 return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public string reactiveUser(int id)
+        {
+            try
+            {
+                string query = $"UPDATE dbo.usuarios SET ST_STATUS = 1 WHERE CD_USUARIO = '{id}' ";
+                ExecQueryTeste(query);
+                return "ok";
             }
             catch (Exception)
             {
@@ -137,5 +154,20 @@ namespace Treinamento_C_.Repository
                 throw;
             }
         }     
+        public string softDeleteUser(int id)
+        {
+            try
+            {
+                string query = $"UPDATE dbo.usuarios SET ST_STATUS = '0' WHERE CD_USUARIO = ${id}";
+                ExecQueryTeste(query);
+                return "ok";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
     }
 }

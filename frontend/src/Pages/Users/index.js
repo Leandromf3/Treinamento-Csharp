@@ -8,6 +8,7 @@ import './styleUser.css';
 
 const positionOptions = ['top', 'bottom', 'both'];
 const alignOptions = ['start', 'center', 'end'];
+const url = 'https://localhost:7178/User';
 
 const App = ({}) => {
     const navigate = useNavigate();
@@ -17,12 +18,13 @@ const App = ({}) => {
     const [success, setSuccess] = useState('');
     const [form] = Form.useForm(); 
     const [data, setData] = useState([]);
-   
+    const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
+
 
     const deleteCompany = async (id) => {
         
-        const response = await axios.delete(`http://localhost:8000/api/bitrix/userDelete?id=${id}`,{
-        headers: {Authorization: localStorage.getItem('TOKEN_TEST')}}
+        const response = await axios.delete(url +'/deleteUser?id='+id,{
+        headers: {Authorization: `Bearer ${tolkienn.value}`}}
         );
         fetchData();
         const resp = await response;
@@ -53,11 +55,14 @@ const App = ({}) => {
     }
 
     const reactiveUser = async (id)=>{
-        const response = await axios.get(`http://localhost:8000/api/bitrix/userReactive?id=${id}`,{
-            headers: {Authorization: localStorage.getItem('TOKEN_TEST')}});
-            fetchData();
+        const response = await axios.get(url+'/reactiveUser?id='+id,
+        {headers: {Authorization: `Bearer ${tolkienn.value}`
+            },
+            body: id
+        })
 
-            const resp = await response;
+        const resp = await response;
+            fetchData();
 
             if(resp.error != undefined){
                 setError(resp.error.message);
@@ -79,7 +84,6 @@ const App = ({}) => {
             fetchData();
         }, []);
         const fetchData = async () => {
-            const tolkienn = JSON.parse(localStorage.getItem('TOKEN_TEST'));
             const response = await axios.get('https://localhost:7178/User/getUsers',{
                 headers: {Authorization: `Bearer ${tolkienn.value}`}}
             );
@@ -131,10 +135,17 @@ const App = ({}) => {
             title={item.sT_LOGIN} 
             description={'Tipo de usuário: '+ item.sT_ROLE}
             />
+            {item.sT_STATUS === true &&(
                 <>
-                    <Button type='primary' disabled={(item.status==false? true : false)} onClick={()=>handleClickUpdate(item.id)}>Update</Button>
-                    <Button type='primary' disabled={(item.status==false? true : false)} danger onClick={()=>handleClickDelete(item.id)}>Inativar</Button>
+                    <Button type='primary' onClick={()=>handleClickUpdate(item.id)}>Update</Button>
+                    <Button type='primary' danger onClick={()=>handleClickDelete(item.id)}>Inativar</Button>
                 </>
+            )}
+            {item.sT_STATUS === false && (
+                 <>
+                 <Button type='primary' className='btn-reactive' onClick={()=>handleClickReactive(item.id)}>Reativar</Button>
+                </>
+            )}
             </List.Item>
             )}
             />
