@@ -27,7 +27,7 @@ namespace Treinamento_C_.Repository
                 {
                     throw new BadHttpRequestException("Usuario já existe");
                 }
-                string query2 = $"INSERT INTO dbo.usuarios (ST_NAME, ST_EMAIL, ST_ROLE, ST_LOGIN, ST_PASSWORD) VALUES ('{entity.ST_NAME}', '{entity.ST_EMAIL}', '{entity.ST_ROLE}', '{entity.ST_LOGIN}', '{passwordCrypt}') ";
+                string query2 = $"INSERT INTO dbo.usuarios (ST_NAME, ST_EMAIL, ST_ROLE, ST_LOGIN, ST_PASSWORD, ST_STATUS) VALUES ('{entity.ST_NAME}', '{entity.ST_EMAIL}', '{entity.ST_ROLE}', '{entity.ST_LOGIN}', '{passwordCrypt}', '1') ";
                 List<UserEntity> register = new List<UserEntity>();
                 DataTable registerUser = ExecQueryTeste(query2);
 
@@ -45,28 +45,34 @@ namespace Treinamento_C_.Repository
             try
             {
                 string query = $"SELECT * FROM dbo.usuarios WHERE ST_LOGIN='{userEntity.ST_LOGIN}'";
-                DataTable resultUser = ExecQueryTeste(query);           
+                DataTable resultUser = ExecQueryTeste(query);
 
                 if (resultUser.Rows.Count < 0)
                 {
-                    throw new Exception();
+                    throw new Exception("Usuário não existe");
                 }
-               
+                
                 DataRow row = resultUser.Rows[0];
+                
                 string pass = row["ST_PASSWORD"].ToString();
                 bool passwordDecrypt = BCrypt.Net.BCrypt.Verify(userEntity.ST_PASSWORD, pass);
                 
                 if(passwordDecrypt == false)
                 {
-                    throw new Exception();
+                    throw new Exception("Senha incorreta");
+                }
+
+                if (row["ST_STATUS"].Equals(false))
+                {
+                    throw new Exception("Usuário inativo.");
                 }
 
                 return "ok";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 

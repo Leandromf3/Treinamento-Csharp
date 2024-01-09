@@ -9,7 +9,6 @@ import './styleUser.css';
 const positionOptions = ['top', 'bottom', 'both'];
 const alignOptions = ['start', 'center', 'end'];
 
-const url ='https://b24-q0ahqa.bitrix24.com.br/crm/leads/details/';
 const App = ({}) => {
     const navigate = useNavigate();
     const [position, setPosition] = useState('bottom');
@@ -55,8 +54,7 @@ const App = ({}) => {
 
     const reactiveUser = async (id)=>{
         const response = await axios.get(`http://localhost:8000/api/bitrix/userReactive?id=${id}`,{
-            headers: {Authorization: localStorage.getItem('TOKEN_TEST')}}
-            );
+            headers: {Authorization: localStorage.getItem('TOKEN_TEST')}});
             fetchData();
 
             const resp = await response;
