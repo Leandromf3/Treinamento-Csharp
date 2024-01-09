@@ -40,7 +40,7 @@ export default function Body(){
         localStorage.setItem('TOKEN_TEST', JSON.stringify(timeToken));
 
         if(typeof resp.value == 'undefined'){
-          setError('Login inválido!');
+          setError(resp.message =! null ? resp.message : 'Login inválido');
           setTimeout(() => {
             setError('');
             form.resetFields();
