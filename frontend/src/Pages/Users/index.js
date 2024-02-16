@@ -47,7 +47,7 @@ const App = ({}) => {
 
     const getID = async (id)=>{
         try{
-            navigate(`/home/companyUpdate/${id}`);
+            navigate(`/home/userUpdate/${id}`);
         }catch(error){
             console.error('ERROR!', error);
             navigate('/');
@@ -107,7 +107,7 @@ const App = ({}) => {
     const handleClickReactive = (id) => {
         reactiveUser(id);
     }
-    console.log(data)
+
     return (
         <> 
         {error && <Alert message={error} type="error" showIcon />}

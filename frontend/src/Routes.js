@@ -10,6 +10,7 @@ import Users from './Pages/Users';
 import ProdRegister from './Pages/ProductRegister';
 import ProductList from './Pages/ProductList';
 import ProductUpdate from './Pages/ProductUpdate';
+import UserUpdate from './Pages/UserUpdate';
 
 
 export default ()=>{
@@ -25,6 +26,7 @@ export default ()=>{
                     <Route exact path = '/home/prodRegister' element = {<ProdRegister/>}/>
                     <Route exact path = '/home/productList' element = {<ProductList/>}/>
                     <Route exact path = '/home/productUpdate/:id' element = {<ProductUpdate/>}/>
+                    <Route exact path = '/home/userUpdate/:id' element = {<UserUpdate/>}/>
                 </Route>
                 <Route exact path="/register" element = {<Register/>}/>
         </Routes>

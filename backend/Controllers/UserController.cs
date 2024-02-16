@@ -53,13 +53,14 @@ namespace Treinamento_C_.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPut]
         [Route("update")]
         public ActionResult updateUsers([FromBody] UserEntity entity)
         {
             try
             {
-                return Ok();
+                var result = new MainRepository().updateUser(entity);
+                return result != null ? Ok() : StatusCode(255, "Erro durante o update");
             }
             catch (Exception)
             {
@@ -81,6 +82,22 @@ namespace Treinamento_C_.Controllers
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("getUserById")]
+        public ActionResult getUserById(int id) 
+        {
+            try
+            {
+                var result = new MainRepository().getUserById(id);
+                return result != null ? Ok(result) : NotFound(); 
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
