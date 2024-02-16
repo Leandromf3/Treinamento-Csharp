@@ -76,6 +76,52 @@ namespace Treinamento_C_.Repository
             }
         }
 
+        public string updateUser(UserEntity userEntity) 
+        {
+            try
+            {
+                string query = $"UPDATE dbo.usuarios SET ST_NAME={userEntity.ST_NAME}, ST_EMAIL={userEntity.ST_EMAIL}, ST_LOGIN={userEntity.ST_LOGIN}, ST_ROLE={userEntity.ST_ROLE} WHERE CD_USUARIO={userEntity.Id}";
+                ExecQueryTeste(query);
+                return "ok";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<UserEntity> getUserById(int id) 
+        {
+            try
+            {
+                string query = $"SELECT * FROM dbo.usuarios where CD_USUARIO={id}";
+                List<UserEntity> user = new List<UserEntity>();
+                DataTable resultUser = ExecQueryTeste(query);
+
+                foreach (DataRow row in resultUser.Rows)
+                {
+                    var users = new UserEntity()
+                    {
+                        Id = (int)row["CD_USUARIO"],
+                        ST_NAME = Convert.ToString(row["ST_NAME"]),
+                        ST_PASSWORD = Convert.ToString(row["ST_PASSWORD"]),
+                        ST_EMAIL = Convert.ToString(row["ST_EMAIL"]),
+                        ST_ROLE = Convert.ToString(row["ST_ROLE"]),
+                        ST_LOGIN = Convert.ToString(row["ST_LOGIN"]),
+                        ST_STATUS = row["ST_STATUS"] != DBNull.Value ? Convert.ToBoolean(row["ST_STATUS"]) : true
+                    };
+                    user.Add(users);
+                }
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<UserEntity> getUsers()
         {
             try
